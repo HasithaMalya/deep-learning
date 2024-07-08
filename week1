@@ -1,0 +1,20 @@
+from google.colab import files
+uploaded = files.upload()
+
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.linear_model import Perceptron
+df=pd.read_csv('placement.csv')
+X = df.iloc[:,0:2]
+y = df.iloc[:,-1]
+p = Perceptron()
+p.fit(X,y)
+print(p.coef_)
+print(p.intercept_)
+z=p.score(X,y)
+print("accuracy score is",z)
+from mlxtend.plotting import plot_decision_regions
+plot_decision_regions(X.values, y.values, clf=p, legend=2)
